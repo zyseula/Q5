@@ -22,6 +22,7 @@ public class Q5 {
 		System.out.println("Trinary "+searchtime+"th search, ");
 		System.out.println("start is "+start+", end is "+end);
 		System.out.println("array["+pivot+"] is "+array[pivot]);
+		//TODO: Implement new feature to track searching time 
 		if(key==array[pivot]){
 			System.out.println("Success! Key number is in position"+pivot+". The number of comparisons is "+searchtime);
 		}
