@@ -31,9 +31,11 @@ public class Q5 {
 				System.out.println("Success! Key number is in position"+start+". The number of comparisons is "+searchtime);
 		    }
 			else if(array[end-1]==key){
+				searchtime++;
 				System.out.println("Success! Key number is in position "+(end-1)+". The number of comparisons is "+searchtime);
 			}
 			else if(array[end]==key){
+				searchtime += 2;
 				System.out.println("Success! Key number is in position "+end+". The number of comparisons is "+searchtime);
 			}
 			else
