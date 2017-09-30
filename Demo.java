@@ -15,10 +15,12 @@ public class Demo {
         int searchtime=0;
         System.out.println("Let's start pure Binary search!");
         System.out.println("");
+	System.out.println("Target number is: "+key);
         pureBinarySearch.binary(key, 0, 1499, array, searchtime);
         System.out.println("");
         System.out.println("Let's start Trinary search!");
         System.out.println("");
+	System.out.println("Target number is: "+key);	
         trinarySearch.trinary(key, 0, 1499, array, searchtime); 
 	}
 
