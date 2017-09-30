@@ -1,22 +1,10 @@
 
-
-public class Q5 {
-
-	public static void main(String[] args) {
-		int[] array=new int[1500];
-		array[0]=(int) Math.ceil(Math.random() * 100);
-		int increment=(int) Math.ceil(Math.random() * 100);
-		for(int i=1;i<1500;i++){
-			array[i]=array[i-1]+increment;
-		}
-		int key=(int) Math.ceil(Math.random() * 10000);
-        int searchtime=0;
-        System.out.println("Searching start.....");
-        System.out.println("Target number is: "+key);
-        trinary(key,0,1499,array,searchtime);
+public class Trinary {
+	public Trinary(){
+		
 	}
 	
-	public static void trinary(int key, int start, int end, int[] array, int searchtime){
+	public void trinary(int key, int start, int end, int[] array, int searchtime){
 		searchtime++;
 		int pivot=(end-start)/3+start;
 		System.out.println("Trinary "+searchtime+"th search, ");
@@ -32,10 +20,14 @@ public class Q5 {
 		    }
 			else if(array[end-1]==key){
 				searchtime++;
+				System.out.println("Trinary "+searchtime+"th search, ");
+				System.out.println("array["+(end-1)+"] is "+array[end-1]);
 				System.out.println("Success! Key number is in position "+(end-1)+". The number of comparisons is "+searchtime);
 			}
 			else if(array[end]==key){
 				searchtime += 2;
+				System.out.println("Trinary "+searchtime+"th search, ");
+				System.out.println("array["+end+"] is "+array[end]);
 				System.out.println("Success! Key number is in position "+end+". The number of comparisons is "+searchtime);
 			}
 			else
@@ -50,7 +42,7 @@ public class Q5 {
 		}
 	}
 	
-	public static void binary(int key, int start, int end, int[] array, int searchtime){
+	public void binary(int key, int start, int end, int[] array, int searchtime){
 		searchtime++;
 		System.out.println("Binary "+searchtime+"th search, ");
 		System.out.println("start is "+start+", end is "+end);
@@ -63,9 +55,11 @@ public class Q5 {
 		{
 			if((end-start)==1){
 			if(array[start]==key){
+				System.out.println("array["+start+"] is "+array[start]);
 				System.out.println("Success! Key number is in position"+start+". The number of comparisons is"+searchtime);
 		    }
 			else if(array[end]==key){
+				System.out.println("array["+end+"] is "+array[end]);
 				System.out.println("Success! Key number is in position"+end+". The number of comparisons is"+searchtime);
 			}
 			else
