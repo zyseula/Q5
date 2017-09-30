@@ -18,6 +18,7 @@ public class Demo {
         pureBinarySearch.binary(key, 0, 1499, array, searchtime);
         System.out.println("");
         System.out.println("Let's start Trinary search!");
+		System.out.println("");
         System.out.println("");
         trinarySearch.trinary(key, 0, 1499, array, searchtime); 
 	}
