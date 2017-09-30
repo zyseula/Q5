@@ -57,7 +57,9 @@ public class Q5 {
 		if(key==array[pivot]){
 			System.out.println("Success! Key number is in position"+pivot+". The number of comparisons is"+searchtime);
 		}
-		if((end-start)==1){
+		else
+		{
+			if((end-start)==1){
 			if(array[start]==key){
 				System.out.println("Success! Key number is in position"+start+". The number of comparisons is"+searchtime);
 		    }
@@ -73,6 +75,8 @@ public class Q5 {
 			else
 				trinary(key,pivot,end,array,searchtime);
 		}
+		}
+	
 	}
 
 }
