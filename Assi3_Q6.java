@@ -1,16 +1,18 @@
+//This program is about using Fold Method via UTF-8 coding in order to make hash table.
+//In order to solving collision, we use Quadratic Method.
 import java.io.*;
-import java.util.*;
 public class Assi3_Q6 {	
 	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner kb= new Scanner(System.in);	
+		//Make an object from hash function
 		HashFunction ht=new HashFunction();
+		//Read file line by line.
 		File file =new File ("C:\\Users\\h_hajiba\\Desktop\\ds17s-asg2-data.txt");
 		BufferedReader br=null;
-		try {			
-			FileReader fr= new FileReader(file);
+		try {	
+			FileReader fr= new FileReader(file);			
 		     br= new BufferedReader(fr);						
 			String lines;	
 			while((lines=br.readLine())!= null){
@@ -30,20 +32,17 @@ public class Assi3_Q6 {
 			System.out.println("Unable to Close file"+file.toString());	
 		} catch (NullPointerException ex) {
 			//File probably never opened.	
+		} 
+		//Searching some key and get the result.
+		String [] strArr= {"Azevedo, Ana", "Silva, Rui","Boussebough, Imane", "Terracina, Giorgio", "Lefebvre, Peter", "Houghten, Sher", "Revesz, Peter"};
+		for(int i=0; i < strArr.length; i++){
+		String str=ht.SearchKey(strArr[i]);
+		if( str== null)
+			System.out.println("Sorry, Result Not Found for \"" + strArr[i]+ "\".");
 		}
-		System.out.println( "Please Enter Search Key \"Surname, Name\": ");
-		String str=kb.nextLine();
-		if(ht.SearchKey(str.trim())== null)
-			System.out.println("Sorry, Result Not Found.");		
-		kb.close();
-		
-			
-
+  }
 }
-	
-	
-
-}
+//This is a hash function.
 class HashFunction{
 	
 	public Object SearchKey;
@@ -51,7 +50,7 @@ class HashFunction{
 	private final int M=2657;
 	private String [] HT;
 	
-	
+	//This is a constructor.
 	public HashFunction(){	
 		HT=new String [M];
 		for(int i=0; i < HT.length; i++){
@@ -59,7 +58,7 @@ class HashFunction{
 		}
 		key=null;
 	}
-	
+	//These are Constructor and set and get funtion. 
 	public HashFunction(String str ){
 		key=str;
 	}
@@ -69,12 +68,13 @@ class HashFunction{
 	public String getKey(){
 		return key;
 	}
+	//Put names on the hash table.
 	public void addVal(String str){
 		int prob=0;	
 			int h_pos= HT (str,prob);
 			if(HT[h_pos]==null){
 				HT[h_pos]=str;
-				System.out.println("hpos=   "+h_pos+HT[h_pos]);	
+//				System.out.println("hpos=   "+h_pos+HT[h_pos]);	
 				prob = -1;
 			}
 			else{
@@ -86,7 +86,7 @@ class HashFunction{
 			while ((prob !=-1) && (prob != h_pos)){				
 				if(HT[prob]==null){
 					HT[prob]=str;
-					System.out.println("Prob_pos=   "+prob+HT[prob]);
+//					System.out.println("Prob_pos=   "+prob+HT[prob]);
 					prob = -1;					
 				}
 				else{
@@ -99,16 +99,14 @@ class HashFunction{
 			if(prob == h_pos)
 				System.out.println("Sorry,Table is Full");
 	}
-	
+	//This hashmap function by using fold method and UFT-8 code.
 	public int HashMap(String str){
-		
-		int sum=0;
-		try {				
-			for(int i=0;i<str.length();i++ ){		    
-		    byte[] bytes=str.getBytes();
-		    String newStr=new String(bytes,"UTF-8");
-		    sum+=(int)newStr.charAt(i);
-//		    System.out.println(sum);
+
+		int sum=0;				
+		try {	
+			byte[] bytes=str.getBytes("UTF-8");
+			for(int i=0;i< bytes.length;i++ ){
+		    sum+= bytes[i]&0xFF;
 			}
 		    
 		} catch (UnsupportedEncodingException e) {
@@ -116,11 +114,16 @@ class HashFunction{
 		}	
 		return( sum );		
 	}	
+	
+	//Using Quadratic Method for solving collision.
 	public int HT(String str, int prob){
 		int h_pos= HashMap(str);
-		return (h_pos+prob) % M;		
+		int prob1= (int)Math.pow(prob, 2);
+		return (h_pos+prob1) % M;		
 		
 	}
+	
+	//This is a searching Method.
 	public String SearchKey(String key){
 		int prob=0;
 		int CountProb=0;
@@ -129,7 +132,7 @@ class HashFunction{
 			return null;
 		else if (HT[h_pos].equals(key)){
 			CountProb++;
-			System.out.println("Number of prob for searching "+ key+ " is "+ CountProb+".");
+			System.out.println("Number of prob for searching \""+ key+ "\" is "+ CountProb+".");
 			return HT[h_pos];
 		}
 		else {
@@ -148,7 +151,7 @@ class HashFunction{
 			}
 			else if (HT[prob].equals(key)){	
 				CountProb++;
-				System.out.println("Number of prob for searching "+ key + " is "+ CountProb+".");
+				System.out.println("Number of prob for searching \""+ key + "\" is "+ CountProb+".");
 			    return HT[prob];
 			}
 			else{
@@ -159,7 +162,7 @@ class HashFunction{
 					else{
 						CountProb++;
 						prob++;
-					}
+				}
 			}
 		}	
 		return null;
