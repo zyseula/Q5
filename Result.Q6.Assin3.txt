@@ -1,0 +1,7 @@
+Number of prob for searching "Azevedo, Ana" is 74.
+Number of prob for searching "Silva, Rui" is 2.
+Number of prob for searching "Boussebough, Imane" is 2.
+Number of prob for searching "Terracina, Giorgio" is 1.
+Sorry, Result Not Found for "Lefebvre, Peter".
+Sorry, Result Not Found for "Houghten, Sher".
+Number of prob for searching "Revesz, Peter" is 1.
